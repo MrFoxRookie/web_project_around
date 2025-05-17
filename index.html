@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>web_project_around</title>
+  </head>
+  <body class="body">
+    <header class="header">
+      <h1 class="header__title">
+        Alrededor<sup class="header__superscript"> Del Mundo</sup>
+      </h1>
+    </header>
+    <main class="main">
+      <div class="profile">
+        <div class="profile__main-container">
+          <img
+            class="profile__photo"
+            src="./images/profile-photo.jpg"
+            alt="Foto del usuario"
+          />
+          <div class="profile__username-container">
+            <h2 class="profile__name">Jacques Cousteau</h2>
+            <img
+              class="profile__edit-button"
+              src="./images/edit-button.svg"
+              alt="Botón de edición"
+            />
+            <h3 class="profile__about-me">Explorador</h3>
+          </div>
+        </div>
+        <div class="profile__add-container">
+          <img
+            class="profile__add-cross"
+            src="./images/add-button.svg"
+            alt="Botón de agregar"
+          />
+        </div>
+      </div>
+      <div class="grid">
+        <div class="grid__cell">
+          <img
+            class="grid__image"
+            src="./images/Bosque-de-Bambú-de-Arashiyama.jpg"
+            alt="Imagen de un Bosque de Bambú"
+          />
+          <div class="grid__description-container">
+            <h3 class="grid__location-name">Bosque Arashiyama</h3>
+            <img
+              class="grid__like-button"
+              src="./images/like-button.svg"
+              alt="Icono de me gusta"
+            />
+          </div>
+        </div>
+        <div class="grid__cell">
+          <img
+            class="grid__image"
+            src="./images/Cataratas-Victoria.jpg"
+            alt="Imagenes de cataratas"
+          />
+          <div class="grid__description-container">
+            <h3 class="grid__location-name">Cataratas Victoria</h3>
+            <img
+              class="grid__like-button"
+              src="./images/like-button.svg"
+              alt="Icono de me gusta"
+            />
+          </div>
+        </div>
+        <div class="grid__cell">
+          <img
+            class="grid__image"
+            src="./images/Cañon-del-Sumidero.jpg"
+            alt="Imagen de un cañón"
+          />
+          <div class="grid__description-container">
+            <h3 class="grid__location-name">Cañon del Sumidero</h3>
+            <img
+              class="grid__like-button"
+              src="./images/like-button.svg"
+              alt="Icono de me gusta"
+            />
+          </div>
+        </div>
+        <div class="grid__cell">
+          <img
+            class="grid__image"
+            src="./images/Desierto-de-Atacama.jpg"
+            alt="Imagen de un desierto con una montaña al fondo"
+          />
+          <div class="grid__description-container">
+            <h3 class="grid__location-name">Desierto de Atacama</h3>
+            <img
+              class="grid__like-button"
+              src="./images/like-button.svg"
+              alt="Icono de me gusta"
+            />
+          </div>
+        </div>
+        <div class="grid__cell">
+          <img
+            class="grid__image"
+            src="./images/Postojna.jpg"
+            alt="Imagen de una gruta"
+          />
+          <div class="grid__description-container">
+            <h3 class="grid__location-name">Cueva de Postojna</h3>
+            <img
+              class="grid__like-button"
+              src="./images/like-button.svg"
+              alt="Icono de me gusta"
+            />
+          </div>
+        </div>
+        <div class="grid__cell">
+          <img
+            class="grid__image"
+            src="./images/Schwarzwald.jpg"
+            alt="Imagen de un bosque con neblina"
+          />
+          <div class="grid__description-container">
+            <h3 class="grid__location-name">Bosque Schwarzwald</h3>
+            <img
+              class="grid__like-button"
+              src="./images/like-button.svg"
+              alt="Icono de me gusta"
+            />
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&#169; Alrededor Del Mundo</p>
+    </footer>
+    <div class="popup">
+      <form action="#" class="popup__container">
+        <img
+          class="popup__close-button"
+          src="./images/close-button.svg"
+          alt="Icono de cerrar ventana"
+        />
+
+        <h3 class="popup__title">Editar perfil</h3>
+        <fieldset class="popup__user-info">
+          <label for="name" class="popup__label">Name</label>
+          <input
+            type="text"
+            placeholder="Nombre"
+            class="popup__input popup__input-name"
+            id="name"
+            name="user-name"
+            required
+          />
+          <label for="description" class="popup__label"></label>
+          <input
+            type="text"
+            placeholder="Acerca de mí"
+            class="popup__input popup__input-description"
+            id="description"
+            name="user-description"
+            required
+          />
+        </fieldset>
+        <button type="submit" class="popup__save-button">Guardar</button>
+      </form>
+    </div>
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>
+<!-- <form action="/action_page.php" method="get">
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname" /><br /><br />
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname" /><br /><br />
+  <button type="submit" value="Submit">Submit</button>
+  <button type="reset" value="Reset">Reset</button>
+</form> -->
