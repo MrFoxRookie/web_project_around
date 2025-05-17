@@ -1,4 +1,4 @@
-# Tripleten web_project_around
+# Tripconsten web_project_around
 
 Este proyecto muestra una página web responsiva/interactiva compuesta principalmente de los siguientes elementos:
 Header: Un elemento de texto en la parte superior de la pantalla.
@@ -8,4 +8,4 @@ Dicho lo anterior, mediante un enlace a través de JavaScript, al usuario presio
 
 Entre las tecnologías empleadas para la elaboración de esta página se encuentran el uso de flexbox y grid para el posicionamiento de los elementos, a su vez que también se emplea CSS para la estilización de los mismos. Aunado a esto, también se emplea el uso de JavaScript, el cual permite agregar clases especificas a determinados elementos que sean presionados por el usuario, lo cual permite la activación de determinadas clases tales como cambiar el display: none a display: flex, permitiendo así, en este caso que el formulario pueda ser observado y posteriormente respondido por los usuarios.
 
-Enlace a la página:
+Enlace a GitHub Pages: https://mrfoxrookie.github.io/web_project_around/
