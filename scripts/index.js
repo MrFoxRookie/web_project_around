@@ -9,6 +9,9 @@ const profileName = document.querySelector(".profile__name");
 const profileAboutMe = document.querySelector(".profile__about-me");
 const form = document.querySelector(".popup__container");
 
+popupInputName.value = profileName.textContent;
+popupInputDescription.value = profileAboutMe.textContent;
+
 function handleOpenPopup() {
   popup.classList.add("popup_opened");
 }
