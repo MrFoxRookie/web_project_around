@@ -1,14 +1,14 @@
 .grid {
   display: grid;
-  grid-template: 1fr 1fr / repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   max-width: 880px;
-  max-height: 743px;
   margin: 0 auto;
   gap: 21px 17px;
 }
 
 .grid__cell {
   overflow: hidden;
+  position: relative;
 }
 
 .grid__image {
@@ -16,6 +16,10 @@
   aspect-ratio: 1 / 1;
   border-top-right-radius: 2%;
   border-top-left-radius: 2%;
+}
+
+.grid__image:hover {
+  cursor: pointer;
 }
 
 .grid__description-container {
@@ -50,6 +54,17 @@
 
 .grid__like-button:active {
   fill: black;
+}
+
+.grid__delete-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.grid__delete-button:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 780px) {

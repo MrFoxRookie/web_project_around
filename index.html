@@ -38,102 +38,30 @@
           />
         </div>
       </div>
-      <div class="grid">
+      <div class="grid"></div>
+      <template id="template-card">
         <div class="grid__cell">
-          <img
-            class="grid__image"
-            src="./images/Bosque-de-Bambú-de-Arashiyama.jpg"
-            alt="Imagen de un Bosque de Bambú"
-          />
+          <img class="grid__image" />
           <div class="grid__description-container">
-            <h3 class="grid__location-name">Bosque Arashiyama</h3>
+            <h3 class="grid__location-name"></h3>
             <img
               class="grid__like-button"
               src="./images/like-button.svg"
               alt="Icono de me gusta"
             />
           </div>
-        </div>
-        <div class="grid__cell">
           <img
-            class="grid__image"
-            src="./images/Cataratas-Victoria.jpg"
-            alt="Imagenes de cataratas"
+            class="grid__delete-button"
+            src="./images/delete-button.svg"
+            alt="Icono de eliminar"
           />
-          <div class="grid__description-container">
-            <h3 class="grid__location-name">Cataratas Victoria</h3>
-            <img
-              class="grid__like-button"
-              src="./images/like-button.svg"
-              alt="Icono de me gusta"
-            />
-          </div>
         </div>
-        <div class="grid__cell">
-          <img
-            class="grid__image"
-            src="./images/Cañon-del-Sumidero.jpg"
-            alt="Imagen de un cañon con un rio en medio y rodeado de plantas"
-          />
-          <div class="grid__description-container">
-            <h3 class="grid__location-name">Cañon del Sumidero</h3>
-            <img
-              class="grid__like-button"
-              src="./images/like-button.svg"
-              alt="Icono de me gusta"
-            />
-          </div>
-        </div>
-        <div class="grid__cell">
-          <img
-            class="grid__image"
-            src="./images/Desierto-de-Atacama.jpg"
-            alt="Imagen de un desierto con una montaña al fondo"
-          />
-          <div class="grid__description-container">
-            <h3 class="grid__location-name">Desierto de Atacama</h3>
-            <img
-              class="grid__like-button"
-              src="./images/like-button.svg"
-              alt="Icono de me gusta"
-            />
-          </div>
-        </div>
-        <div class="grid__cell">
-          <img
-            class="grid__image"
-            src="./images/Postojna.jpg"
-            alt="Imagen de una gruta"
-          />
-          <div class="grid__description-container">
-            <h3 class="grid__location-name">Cueva de Postojna</h3>
-            <img
-              class="grid__like-button"
-              src="./images/like-button.svg"
-              alt="Icono de me gusta"
-            />
-          </div>
-        </div>
-        <div class="grid__cell">
-          <img
-            class="grid__image"
-            src="./images/Schwarzwald.jpg"
-            alt="Imagen de un bosque con neblina"
-          />
-          <div class="grid__description-container">
-            <h3 class="grid__location-name">Bosque Schwarzwald</h3>
-            <img
-              class="grid__like-button"
-              src="./images/like-button.svg"
-              alt="Icono de me gusta"
-            />
-          </div>
-        </div>
-      </div>
+      </template>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&#169; Alrededor Del Mundo</p>
     </footer>
+
     <div class="popup">
       <form action="#" class="popup__container">
         <img
@@ -165,6 +93,50 @@
         </fieldset>
         <button type="submit" class="popup__save-button">Guardar</button>
       </form>
+    </div>
+    <div class="popup-image">
+      <form action="#" class="popup-image__container">
+        <img
+          class="popup-image__close-button"
+          src="./images/close-button.svg"
+          alt="Icono de cerrar ventana"
+        />
+        <h3 class="popup-image__title">Nueva ubicación</h3>
+        <fieldset class="popup-image__fields">
+          <label for="card-title" class="popup-image__label">Título</label>
+          <input
+            type="text"
+            placeholder="Titulo"
+            class="popup-image__input popup-image__input-title"
+            id="card-title"
+            name="card-title"
+            required
+          />
+          <label for="image-url" class="popup-image__label"
+            >URL de la imagen</label
+          >
+          <input
+            type="url"
+            placeholder="Enlace a la imagen"
+            class="popup-image__input popup-image__input-url"
+            id="image-url"
+            name="image-url"
+            required
+          />
+        </fieldset>
+        <button type="submit" class="popup-image__submit-button">Crear</button>
+      </form>
+    </div>
+    <div class="cell-popup">
+      <div class="cell-popup__container">
+        <img class="cell-popup__image" />
+        <img
+          class="cell-popup__close-button"
+          src="./images/close-button.svg"
+          alt=""
+        />
+        <p class="cell-popup__title"></p>
+      </div>
     </div>
     <script src="./scripts/index.js"></script>
   </body>
