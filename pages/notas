@@ -1,0 +1,30 @@
+input de nombre y profesion
+Ambos campos son obligatorios.
+
+<!-- //El campo "Nombre" debe contener entre 2 y 40 caracteres. -->
+<!-- El campo "Acerca de" debe contener entre 2 y 200 caracteres.// -->
+
+Utiliza los mensajes de error por defecto del navegador.
+color rojo para los bordes al no ser validos
+
+input de logacion
+Ambos campos son obligatorios.
+
+<!-- El campo "Título" debe contener entre 2 y 30 caracteres.
+El campo "URL de la imagen" debe contener una URL. -->
+
+utiliza los mensajes de error por defecto del navegador.
+borde rojo si inactivo
+
+Salir de los formularios si se hace click fuera del formulario o la tecla esc
+
+Paso 1
+
+<!-- Poner novalidate a los forms, lo cual hace que se ignoren los required y por eso se pueden meter datos vacios -->
+
+<!-- Paso 2
+revisar el boton absolute -->
+
+<!-- paso 3 -->
+
+revisar el absolute del mensaje error

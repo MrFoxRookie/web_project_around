@@ -63,7 +63,7 @@
     </footer>
 
     <div class="popup">
-      <form action="#" class="popup__container">
+      <form action="#" class="popup__container form" novalidate>
         <img
           class="popup__close-button"
           src="./images/close-button.svg"
@@ -72,30 +72,40 @@
 
         <h3 class="popup__title">Editar perfil</h3>
         <fieldset class="popup__user-info">
-          <label for="name" class="popup__label">Name</label>
-          <input
-            type="text"
-            placeholder="Nombre"
-            class="popup__input popup__input-name"
-            id="name"
-            name="user-name"
-            required
-          />
-          <label for="description" class="popup__label"></label>
-          <input
-            type="text"
-            placeholder="Acerca de mí"
-            class="popup__input popup__input-description"
-            id="description"
-            name="user-description"
-            required
-          />
+          <div class="popup__span-container">
+            <label for="name" class="popup__label">Name</label>
+            <input
+              type="text"
+              placeholder="Nombre"
+              class="popup__input popup__input-name form__input"
+              id="name"
+              name="user-name"
+              required
+              minlength="2"
+              maxlength="40"
+            />
+            <span class="form__input-error"></span>
+          </div>
+          <div class="popup__span-container">
+            <label for="description" class="popup__label"></label>
+            <input
+              type="text"
+              placeholder="Acerca de mí"
+              class="popup__input popup__input-description form__input"
+              id="description"
+              name="user-description"
+              required
+              minlength="2"
+              maxlength="200"
+            />
+            <span class="form__input-error"></span>
+          </div>
         </fieldset>
         <button type="submit" class="popup__save-button">Guardar</button>
       </form>
     </div>
     <div class="popup-image">
-      <form action="#" class="popup-image__container">
+      <form action="#" class="popup-image__container form" novalidate>
         <img
           class="popup-image__close-button"
           src="./images/close-button.svg"
@@ -103,26 +113,34 @@
         />
         <h3 class="popup-image__title">Nueva ubicación</h3>
         <fieldset class="popup-image__fields">
-          <label for="card-title" class="popup-image__label">Título</label>
-          <input
-            type="text"
-            placeholder="Titulo"
-            class="popup-image__input popup-image__input-title"
-            id="card-title"
-            name="card-title"
-            required
-          />
-          <label for="image-url" class="popup-image__label"
-            >URL de la imagen</label
-          >
-          <input
-            type="url"
-            placeholder="Enlace a la imagen"
-            class="popup-image__input popup-image__input-url"
-            id="image-url"
-            name="image-url"
-            required
-          />
+          <div class="popup__span-container">
+            <label for="card-title" class="popup-image__label">Título</label>
+            <input
+              type="text"
+              placeholder="Titulo"
+              class="popup-image__input popup-image__input-title form__input"
+              id="card-title"
+              name="card-title"
+              required
+              minlength="2"
+              maxlength="30"
+            />
+            <span class="form__input-error"></span>
+          </div>
+          <div class="popup__span-container">
+            <label for="image-url" class="popup-image__label"
+              >URL de la imagen</label
+            >
+            <input
+              type="url"
+              placeholder="Enlace a la imagen"
+              class="popup-image__input popup-image__input-url form__input"
+              id="image-url"
+              name="image-url"
+              required
+            />
+            <span class="form__input-error"></span>
+          </div>
         </fieldset>
         <button type="submit" class="popup-image__submit-button">Crear</button>
       </form>

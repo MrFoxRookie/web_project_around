@@ -8,3 +8,23 @@
 @import url(../blocks/popup.css);
 @import url(../blocks/popup-image.css);
 @import url(../blocks/popup-cell.css);
+
+.form__input_type_error {
+  border-bottom: 2px solid red;
+}
+
+.popup__span-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form__input-error {
+  font-size: 12px;
+  color: red;
+  position: absolute;
+  bottom: -30px;
+  width: 90%;
+}

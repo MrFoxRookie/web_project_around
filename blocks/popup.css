@@ -79,6 +79,10 @@
   color: #c4c4c4;
   margin: 0 auto;
   cursor: not-allowed;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .popup__container:valid .popup__save-button {

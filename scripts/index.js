@@ -159,3 +159,43 @@ function handleChangeImage(evt) {
 }
 
 imageForm.addEventListener("submit", handleChangeImage);
+
+// Proyecto #9
+
+const formElements = document.querySelectorAll(".form");
+
+formElements.forEach((formElement) => {
+  const inputList = formElement.querySelectorAll(".form__input");
+
+  formElement.addEventListener("submit", function (evt) {
+    evt.preventDefault();
+  });
+
+  const showInputError = (input) => {
+    const errorMessage = input.nextElementSibling;
+    input.classList.add("form__input_type_error");
+    errorMessage.textContent = input.validationMessage;
+    errorMessage.classList.add("form__input-error_active");
+  };
+
+  const hideInputError = (input) => {
+    const errorSpan = input.nextElementSibling;
+    input.classList.remove("form__input_type_error");
+    errorSpan.textContent = "";
+    errorSpan.classList.remove("form__input-error_active");
+  };
+
+  const isValid = (input) => {
+    if (!input.validity.valid) {
+      showInputError(input);
+    } else {
+      hideInputError(input);
+    }
+  };
+
+  inputList.forEach((input) => {
+    input.addEventListener("input", () => {
+      isValid(input);
+    });
+  });
+});
