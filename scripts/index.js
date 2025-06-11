@@ -162,40 +162,34 @@ imageForm.addEventListener("submit", handleChangeImage);
 
 // Proyecto #9
 
+// Crear el elemento span
+const spanError = document.createElement("span");
+console.log(spanError);
+
 const formElements = document.querySelectorAll(".form");
 
-formElements.forEach((formElement) => {
-  const inputList = formElement.querySelectorAll(".form__input");
-
-  formElement.addEventListener("submit", function (evt) {
+formElements.forEach((form) => {
+  form.addEventListener("submit", function (evt) {
     evt.preventDefault();
   });
 
-  const showInputError = (input) => {
-    const errorMessage = input.nextElementSibling;
-    input.classList.add("form__input_type_error");
-    errorMessage.textContent = input.validationMessage;
-    errorMessage.classList.add("form__input-error_active");
-  };
+  const inputElements = form.querySelectorAll("input");
+  console.log(inputElements);
 
-  const hideInputError = (input) => {
-    const errorSpan = input.nextElementSibling;
-    input.classList.remove("form__input_type_error");
-    errorSpan.textContent = "";
-    errorSpan.classList.remove("form__input-error_active");
-  };
-
-  const isValid = (input) => {
-    if (!input.validity.valid) {
-      showInputError(input);
-    } else {
-      hideInputError(input);
-    }
-  };
-
-  inputList.forEach((input) => {
-    input.addEventListener("input", () => {
-      isValid(input);
+  inputElements.forEach((input) => {
+    input.addEventListener("input", function (evt) {
+      console.log(evt.target.validity.valid);
+      if (!evt.target.validity.valid) {
+        evt.target.classList.add("form__input_type_error");
+        const spanError = document.createElement("span");
+        spanError.classList.add("form__input-error");
+        spanError.textContent = evt.target.validationMessage;
+        evt.target.insertAdjacentElement("afterend", spanError);
+      } else {
+        evt.target.classList.remove("form__input_type_error");
+      }
     });
   });
 });
+
+// const formInput = formElement.querySelector(".form__input");
