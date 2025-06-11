@@ -163,8 +163,6 @@ imageForm.addEventListener("submit", handleChangeImage);
 // Proyecto #9
 
 // Crear el elemento span
-const spanError = document.createElement("span");
-console.log(spanError);
 
 const formElements = document.querySelectorAll(".form");
 
@@ -173,23 +171,27 @@ formElements.forEach((form) => {
     evt.preventDefault();
   });
 
+  function showInputError(input) {
+    input.target.classList.add("form__input_type_error");
+    const spanError = document.createElement("span");
+    spanError.classList.add("form__input-error");
+    spanError.textContent = input.target.validationMessage;
+    input.target.insertAdjacentElement("afterend", spanError);
+  }
+
+  function hideInputError(input) {
+    input.target.classList.remove("form__input_type_error");
+  }
+
   const inputElements = form.querySelectorAll("input");
-  console.log(inputElements);
 
   inputElements.forEach((input) => {
     input.addEventListener("input", function (evt) {
-      console.log(evt.target.validity.valid);
       if (!evt.target.validity.valid) {
-        evt.target.classList.add("form__input_type_error");
-        const spanError = document.createElement("span");
-        spanError.classList.add("form__input-error");
-        spanError.textContent = evt.target.validationMessage;
-        evt.target.insertAdjacentElement("afterend", spanError);
+        showInputError(evt);
       } else {
-        evt.target.classList.remove("form__input_type_error");
+        hideInputError(evt);
       }
     });
   });
 });
-
-// const formInput = formElement.querySelector(".form__input");
