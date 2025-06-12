@@ -15,6 +15,7 @@ popupInputDescription.value = profileAboutMe.textContent;
 
 function handleOpenPopup() {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", popupEscKey);
 }
 
 function handleClosePopup() {
@@ -33,6 +34,21 @@ profileEditButton.addEventListener("click", handleOpenPopup);
 popupCloseButton.addEventListener("click", handleClosePopup);
 
 form.addEventListener("submit", handleChangeUserInformation);
+
+//Cerrar popup con click afuera//
+popup.addEventListener("mousedown", function (evt) {
+  if (evt.target === popup) {
+    handleClosePopup();
+  }
+});
+//Cerrar popup con tecla Esc//
+function popupEscKey(evt) {
+  console.log("hola");
+  if (evt.key === "Escape") {
+    handleClosePopup();
+    document.removeEventListener("keydown", popupEscKey);
+  }
+}
 
 //Proyecto #8//
 
@@ -55,6 +71,21 @@ const cellPopupTitle = cellPopup.querySelector(".cell-popup__title");
 const cellPopupImageCloseButton = cellPopup.querySelector(
   ".cell-popup__close-button"
 );
+
+// Función para cerrar popups con tecla Esc
+function handleEscKey(evt) {
+  if (evt.key === "Escape") {
+    const openPopup = document.querySelector(
+      '.popup-image[style="display: flex;"], .cell-popup[style="display: flex;"]'
+    );
+    if (openPopup) {
+      openPopup.style.display = "none";
+    }
+  }
+}
+
+// Agregar event listener para ESC
+document.addEventListener("keydown", handleEscKey);
 
 const initialCards = [
   {
@@ -99,13 +130,13 @@ function createCard(title, link) {
   grid.prepend(gridCell);
   gridImage.alt = title;
 
-  //Activar boton para eliminar imagen//
+  // Activar boton para eliminar imagen
   const gridDeleteButton = gridCell.querySelector(".grid__delete-button");
   gridDeleteButton.addEventListener("click", function () {
     gridCell.remove();
   });
 
-  //Acivar y desactivar boton de like//
+  // Activar y desactivar boton de like
   const gridLikeButton = gridCell.querySelector(".grid__like-button");
   gridLikeButton.addEventListener("click", function () {
     if (this.src.includes("/images/like-button.svg")) {
@@ -115,7 +146,7 @@ function createCard(title, link) {
     }
   });
 
-  //Abrir popup de imagen//
+  // Abrir popup de imagen
   function handleOpenGridImagePopup() {
     cellPopup.style.display = "flex";
     cellPopupImage.src = gridImage.src;
@@ -125,7 +156,7 @@ function createCard(title, link) {
 
   gridImage.addEventListener("click", handleOpenGridImagePopup);
 
-  //Cerrar popup de imagen//
+  // Cerrar popup de imagen
   function handleCloseGridPopupImage() {
     cellPopup.style.display = "none";
   }
@@ -134,19 +165,32 @@ function createCard(title, link) {
     "click",
     handleCloseGridPopupImage
   );
+
+  // Cerrar popups con click afuera
+  popupImage.addEventListener("mousedown", function (evt) {
+    if (evt.target === popupImage) {
+      popupImage.style.display = "none";
+    }
+  });
+
+  cellPopup.addEventListener("mousedown", function (evt) {
+    if (evt.target === cellPopup) {
+      cellPopup.style.display = "none";
+    }
+  });
 }
 
-//Abrir popup para agregar imagen//
+// Abrir popup para agregar imagen
 imageAddButton.addEventListener("click", function () {
   popupImage.style.display = "flex";
 });
 
-//Cerrar popup para agregar imagen//
+// Cerrar popup para agregar imagen
 popupImageCloseButton.addEventListener("click", function () {
   popupImage.style.display = "none";
 });
 
-//Submit para agregar imagen//
+// Submit para agregar imagen
 function handleChangeImage(evt) {
   evt.preventDefault();
   const newCell = {
@@ -162,29 +206,32 @@ imageForm.addEventListener("submit", handleChangeImage);
 
 // Proyecto #9
 
-// Crear el elemento span
-
 const formElements = document.querySelectorAll(".form");
 
 formElements.forEach((form) => {
+  const inputElements = Array.from(form.querySelectorAll("input"));
+  const buttonElement = form.querySelector(".buttonclase");
+  validateForm(inputElements);
   form.addEventListener("submit", function (evt) {
     evt.preventDefault();
   });
+});
 
-  function showInputError(input) {
-    input.target.classList.add("form__input_type_error");
-    const spanError = document.createElement("span");
-    spanError.classList.add("form__input-error");
-    spanError.textContent = input.target.validationMessage;
-    input.target.insertAdjacentElement("afterend", spanError);
-  }
+function showInputError(input) {
+  input.target.classList.add("form__input_type_error");
+  console.log(input);
+  const spanError = document.querySelector(`#${input.target.id}-error`);
+  spanError.classList.add("form__input-error");
+  spanError.textContent = input.target.validationMessage;
+}
 
-  function hideInputError(input) {
-    input.target.classList.remove("form__input_type_error");
-  }
-
-  const inputElements = form.querySelectorAll("input");
-
+//Borrar span anterior//
+function hideInputError(input) {
+  input.target.classList.remove("form__input_type_error");
+  const spanError = document.querySelector(`#${input.target.id}-error`);
+  spanError.textContent = "";
+}
+function validateForm(inputElements, buttonElement) {
   inputElements.forEach((input) => {
     input.addEventListener("input", function (evt) {
       if (!evt.target.validity.valid) {
@@ -192,6 +239,9 @@ formElements.forEach((form) => {
       } else {
         hideInputError(evt);
       }
+      toggleButton(inputElements, buttonElement);
     });
   });
-});
+}
+
+function toggleButton(inputElements, buttonElement) {}
