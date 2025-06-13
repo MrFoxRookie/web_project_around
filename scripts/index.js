@@ -16,6 +16,8 @@ popupInputDescription.value = profileAboutMe.textContent;
 function handleOpenPopup() {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", popupEscKey);
+  popupInputName.value = profileName.textContent;
+  popupInputDescription.value = profileAboutMe.textContent;
 }
 
 function handleClosePopup() {
@@ -23,10 +25,21 @@ function handleClosePopup() {
 }
 
 function handleChangeUserInformation(evt) {
-  evt.preventDefault();
-  profileName.textContent = popupInputName.value;
-  profileAboutMe.textContent = popupInputDescription.value;
-  handleClosePopup();
+  // Validacion de requerimientos del input
+  const nameValidation = popupInputName.value.trim().length;
+  const descriptionValidation = popupInputDescription.value.trim().length;
+  if (
+    nameValidation < 2 ||
+    nameValidation > 40 ||
+    descriptionValidation < 2 ||
+    descriptionValidation > 200
+  ) {
+  } else {
+    evt.preventDefault();
+    profileName.textContent = popupInputName.value;
+    profileAboutMe.textContent = popupInputDescription.value;
+    handleClosePopup();
+  }
 }
 
 profileEditButton.addEventListener("click", handleOpenPopup);
@@ -193,13 +206,29 @@ popupImageCloseButton.addEventListener("click", function () {
 // Submit para agregar imagen
 function handleChangeImage(evt) {
   evt.preventDefault();
-  const newCell = {
-    name: popupImageInputTitle.value,
-    link: popupImageInputUrl.value,
-  };
-  createCard(newCell.name, newCell.link);
-  this.reset();
-  popupImage.style.display = "none";
+  //Validador de Imagen/Url)
+  const titleValue = popupImageInputTitle.value.trim();
+  const urlValue = popupImageInputUrl.value.trim();
+  const titleValidation = titleValue.length;
+  function isValidUrl(value) {
+    try {
+      new URL(value);
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+  if (titleValidation < 2 || titleValidation > 30 || !isValidUrl(urlValue)) {
+    return;
+  } else {
+    const newCell = {
+      name: popupImageInputTitle.value,
+      link: popupImageInputUrl.value,
+    };
+    createCard(newCell.name, newCell.link);
+    evt.target.reset();
+    popupImage.style.display = "none";
+  }
 }
 
 imageForm.addEventListener("submit", handleChangeImage);
@@ -231,7 +260,8 @@ function hideInputError(input) {
   const spanError = document.querySelector(`#${input.target.id}-error`);
   spanError.textContent = "";
 }
-function validateForm(inputElements, buttonElement) {
+
+function validateForm(inputElements) {
   inputElements.forEach((input) => {
     input.addEventListener("input", function (evt) {
       if (!evt.target.validity.valid) {
@@ -239,9 +269,6 @@ function validateForm(inputElements, buttonElement) {
       } else {
         hideInputError(evt);
       }
-      toggleButton(inputElements, buttonElement);
     });
   });
 }
-
-function toggleButton(inputElements, buttonElement) {}
