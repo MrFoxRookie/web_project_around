@@ -29,6 +29,9 @@
   font-weight: 500;
   line-height: 48px;
   margin: 0 0 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile__about-me {
@@ -132,6 +135,7 @@
   .profile__name {
     font-size: 22px;
     margin-bottom: 0px;
+    line-height: 28px;
   }
 
   .profile__edit-button {
@@ -141,6 +145,7 @@
 
   .profile__about-me {
     font-size: 14px;
+    margin-top: 10px;
   }
 
   .profile__add-container {

@@ -1,4 +1,4 @@
-//Proyecto #7//
+// Proyecto #7 //
 
 const profileEditButton = document.querySelector(".profile__edit-button");
 const popup = document.querySelector(".popup");
@@ -10,22 +10,23 @@ const popupInputDescription = document.querySelector(
 const profileName = document.querySelector(".profile__name");
 const profileAboutMe = document.querySelector(".profile__about-me");
 const form = document.querySelector(".popup__container");
+
 popupInputName.value = profileName.textContent;
 popupInputDescription.value = profileAboutMe.textContent;
 
-function handleOpenPopup() {
+function openProfilePopup() {
   popup.classList.add("popup_opened");
-  document.addEventListener("keydown", popupEscKey);
+  document.addEventListener("keydown", handlePopupEscKey);
   popupInputName.value = profileName.textContent;
   popupInputDescription.value = profileAboutMe.textContent;
 }
 
-function handleClosePopup() {
+function closeProfilePopup() {
   popup.classList.remove("popup_opened");
   clearFormErrors(popup);
 }
 
-function handleChangeUserInformation(evt) {
+function handleProfileFormSubmit(evt) {
   // Validacion de requerimientos del input
   const nameValidation = popupInputName.value.trim().length;
   const descriptionValidation = popupInputDescription.value.trim().length;
@@ -35,35 +36,36 @@ function handleChangeUserInformation(evt) {
     descriptionValidation < 2 ||
     descriptionValidation > 200
   ) {
+    // No hace nada si no pasa la validación
   } else {
     evt.preventDefault();
     profileName.textContent = popupInputName.value;
     profileAboutMe.textContent = popupInputDescription.value;
-    handleClosePopup();
+    closeProfilePopup();
   }
 }
 
-profileEditButton.addEventListener("click", handleOpenPopup);
+profileEditButton.addEventListener("click", openProfilePopup);
 
-popupCloseButton.addEventListener("click", handleClosePopup);
+popupCloseButton.addEventListener("click", closeProfilePopup);
 
-form.addEventListener("submit", handleChangeUserInformation);
+form.addEventListener("submit", handleProfileFormSubmit);
 
 //Cerrar popup con click afuera//
 popup.addEventListener("mousedown", function (evt) {
   if (evt.target === popup) {
-    handleClosePopup();
+    closeProfilePopup();
   }
 });
 //Cerrar popup con tecla Esc//
-function popupEscKey(evt) {
+function handlePopupEscKey(evt) {
   if (evt.key === "Escape") {
-    handleClosePopup();
-    document.removeEventListener("keydown", popupEscKey);
+    closeProfilePopup();
+    document.removeEventListener("keydown", handlePopupEscKey);
   }
 }
 
-//Proyecto #8//
+// Proyecto #8 //
 
 const templateCard = document.querySelector("#template-card");
 const grid = document.querySelector(".grid");
@@ -162,31 +164,28 @@ function createCard(title, link) {
   });
 
   // Abrir popup de imagen
-  function handleOpenGridImagePopup() {
+  function openGridImagePopup() {
     cellPopup.style.display = "flex";
     cellPopupImage.src = gridImage.src;
     cellPopupImage.alt = title;
     cellPopupTitle.textContent = title;
   }
 
-  gridImage.addEventListener("click", handleOpenGridImagePopup);
+  gridImage.addEventListener("click", openGridImagePopup);
 
   // Cerrar popup de imagen
-  function handleCloseGridPopupImage() {
+  function closeGridPopupImage() {
     cellPopup.style.display = "none";
   }
-
-  cellPopupImageCloseButton.addEventListener(
-    "click",
-    handleCloseGridPopupImage
-  );
+  //Cerrar popup de imagen con el boton de cierre//
+  cellPopupImageCloseButton.addEventListener("click", closeGridPopupImage);
 
   // Cerrar popups con click afuera
   popupImage.addEventListener("mousedown", function (evt) {
     if (evt.target === popupImage) {
       popupImage.style.display = "none";
-      imageForm.reset();
       clearFormErrors(popupImage);
+      imageForm.reset();
     }
   });
 
@@ -201,6 +200,8 @@ function createCard(title, link) {
 // Abrir popup para agregar imagen
 imageAddButton.addEventListener("click", function () {
   popupImage.style.display = "flex";
+  imageForm.reset();
+  clearFormErrors(popupImage);
 });
 
 // Cerrar popup para agregar imagen con boton de cierre//
@@ -211,7 +212,7 @@ popupImageCloseButton.addEventListener("click", function () {
 });
 
 // Submit para agregar imagen
-function handleChangeImage(evt) {
+function handleAddImageSubmit(evt) {
   evt.preventDefault();
   //Validador de Imagen/Url)
   const titleValue = popupImageInputTitle.value.trim();
@@ -239,56 +240,7 @@ function handleChangeImage(evt) {
   }
 }
 
-imageForm.addEventListener("submit", handleChangeImage);
+imageForm.addEventListener("submit", handleAddImageSubmit);
 
-// Proyecto #9
-
-const formElements = document.querySelectorAll(".form");
-
-formElements.forEach((form) => {
-  const inputElements = Array.from(form.querySelectorAll("input"));
-  const buttonElement = form.querySelector(".buttonclase");
-  validateForm(inputElements);
-  form.addEventListener("submit", function (evt) {
-    evt.preventDefault();
-  });
-});
-
-function showInputError(input) {
-  input.target.classList.add("form__input_type_error");
-  console.log(input);
-  const spanError = document.querySelector(`#${input.target.id}-error`);
-  spanError.classList.add("form__input-error");
-  spanError.textContent = input.target.validationMessage;
-}
-
-//Borrar span anterior//
-function hideInputError(input) {
-  input.target.classList.remove("form__input_type_error");
-  const spanError = document.querySelector(`#${input.target.id}-error`);
-  spanError.textContent = "";
-}
-
-function validateForm(inputElements) {
-  inputElements.forEach((input) => {
-    input.addEventListener("input", function (evt) {
-      if (!evt.target.validity.valid) {
-        showInputError(evt);
-      } else {
-        hideInputError(evt);
-      }
-    });
-  });
-}
-//Función para eliminar spans una vez cerrados los popups//
-function clearFormErrors(popupElement) {
-  const errorSpans = popupElement.querySelectorAll(".form__input-error");
-  const errorInputs = popupElement.querySelectorAll(".form__input_type_error");
-  errorSpans.forEach((span) => {
-    span.textContent = "";
-    span.classList.remove("form__input-error");
-  });
-  errorInputs.forEach((input) => {
-    input.classList.remove("form__input_type_error");
-  });
-}
+import { clearFormErrors } from "./validate.js";
+import { enableValidation } from "./validate.js";
