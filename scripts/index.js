@@ -22,6 +22,7 @@ function handleOpenPopup() {
 
 function handleClosePopup() {
   popup.classList.remove("popup_opened");
+  clearFormErrors(popup);
 }
 
 function handleChangeUserInformation(evt) {
@@ -56,7 +57,6 @@ popup.addEventListener("mousedown", function (evt) {
 });
 //Cerrar popup con tecla Esc//
 function popupEscKey(evt) {
-  console.log("hola");
   if (evt.key === "Escape") {
     handleClosePopup();
     document.removeEventListener("keydown", popupEscKey);
@@ -93,6 +93,8 @@ function handleEscKey(evt) {
     );
     if (openPopup) {
       openPopup.style.display = "none";
+      clearFormErrors(openPopup);
+      imageForm.reset();
     }
   }
 }
@@ -183,12 +185,15 @@ function createCard(title, link) {
   popupImage.addEventListener("mousedown", function (evt) {
     if (evt.target === popupImage) {
       popupImage.style.display = "none";
+      imageForm.reset();
+      clearFormErrors(popupImage);
     }
   });
 
   cellPopup.addEventListener("mousedown", function (evt) {
     if (evt.target === cellPopup) {
       cellPopup.style.display = "none";
+      clearFormErrors(popupImage);
     }
   });
 }
@@ -198,9 +203,11 @@ imageAddButton.addEventListener("click", function () {
   popupImage.style.display = "flex";
 });
 
-// Cerrar popup para agregar imagen
+// Cerrar popup para agregar imagen con boton de cierre//
 popupImageCloseButton.addEventListener("click", function () {
   popupImage.style.display = "none";
+  clearFormErrors(popupImage);
+  imageForm.reset();
 });
 
 // Submit para agregar imagen
@@ -228,6 +235,7 @@ function handleChangeImage(evt) {
     createCard(newCell.name, newCell.link);
     evt.target.reset();
     popupImage.style.display = "none";
+    clearFormErrors(popupImage);
   }
 }
 
@@ -270,5 +278,17 @@ function validateForm(inputElements) {
         hideInputError(evt);
       }
     });
+  });
+}
+//Función para eliminar spans una vez cerrados los popups//
+function clearFormErrors(popupElement) {
+  const errorSpans = popupElement.querySelectorAll(".form__input-error");
+  const errorInputs = popupElement.querySelectorAll(".form__input_type_error");
+  errorSpans.forEach((span) => {
+    span.textContent = "";
+    span.classList.remove("form__input-error");
+  });
+  errorInputs.forEach((input) => {
+    input.classList.remove("form__input_type_error");
   });
 }

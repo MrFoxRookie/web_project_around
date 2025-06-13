@@ -154,5 +154,6 @@
   .popup__save-button {
     font-size: 14px;
     margin-bottom: 25px;
+    bottom: -20px;
   }
 }

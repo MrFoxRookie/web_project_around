@@ -118,6 +118,7 @@
   }
 
   .popup-image__submit-button {
+    bottom: 20px;
     width: 90%;
     padding: 0;
     border: 1px solid #c4c4c4;
@@ -153,5 +154,6 @@
   .popup-image__submit-button {
     font-size: 14px;
     margin-bottom: 25px;
+    bottom: -15px;
   }
 }
