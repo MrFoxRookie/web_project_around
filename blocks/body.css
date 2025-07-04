@@ -1,6 +1,9 @@
 .body {
   background-color: #000000;
   color: #ffffff;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 45px 0 60px;
   font-family: Inter, Arial, sans-serif;
-  margin: 19px;
+  padding: 10px;
 }

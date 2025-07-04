@@ -1,40 +1,40 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
-    <title>web_project_around</title>
+    <title>Around</title>
+    <link rel="stylesheet" href="/pages/index.css" />
   </head>
   <body class="body">
-    <header class="header">
-      <h1 class="header__title">
-        Alrededor<sup class="header__superscript"> Del Mundo</sup>
-      </h1>
+    <header>
+      <h1 class="header">Around<sup class="header-sup">The World</sup></h1>
     </header>
-    <main class="main">
+    <main>
       <div class="profile">
-        <div class="profile__main-container">
+        <div class="profile__main">
           <img
-            class="profile__photo"
-            src="./images/profile-photo.jpg"
-            alt="Foto del usuario"
+            class="profile__image"
+            src="./images/profile__image.jpg"
+            alt="Imagen del usuario"
           />
-          <div class="profile__username-container">
-            <h2 class="profile__name">Jacques Cousteau</h2>
-            <img
-              class="profile__edit-button"
-              src="./images/edit-button.svg"
-              alt="Botón de edición"
-            />
-            <h3 class="profile__about-me">Explorador</h3>
+          <div class="profile__info">
+            <div class="profile__name-container">
+              <h2 class="profile__name">Jacques Cousteau</h2>
+              <img
+                class="profile__edit-button"
+                src="./images/profile__edit-button.svg"
+                alt="Botono de editar perfil"
+              />
+            </div>
+            <h3 class="profile__description">Explorador</h3>
           </div>
         </div>
-        <div class="profile__add-container">
+        <div class="profile__add-button">
           <img
-            class="profile__add-cross"
-            src="./images/add-button.svg"
-            alt="Botón de agregar"
+            class="profile__add-icon"
+            src="./images/profile__add-button.svg"
+            alt="Boton para agregar imagen"
           />
         </div>
       </div>
@@ -61,100 +61,111 @@
     <footer class="footer">
       <p class="footer__copyright">&#169; Alrededor Del Mundo</p>
     </footer>
-
     <div class="popup">
       <form action="#" class="popup__container form" novalidate>
         <img
-          class="popup__close-button"
+          class="form__close-button popup__close-button"
           src="./images/close-button.svg"
           alt="Icono de cerrar ventana"
         />
+        <h3 class="form__title popup__title">Editar perfil</h3>
 
-        <h3 class="popup__title">Editar perfil</h3>
-        <fieldset class="popup__user-info">
-          <div class="popup__span-container">
-            <label for="name" class="popup__label">Name</label>
+        <fieldset class="form__fields">
+          <div class="form__field">
+            <label for="name" class="form__label">Name</label>
             <input
               type="text"
               placeholder="Nombre"
-              class="popup__input popup__input-name"
+              class="form__input"
               id="name"
               name="user-name"
               required
               minlength="2"
               maxlength="40"
-            /><span id="name-error" class="input-span"></span>
+            />
+            <span id="name-error" class="form__error input-span"></span>
           </div>
-          <div class="popup__span-container">
-            <label for="description" class="popup__label"></label>
+          <div class="form__field">
+            <label for="description" class="form__label">Acerca de mí</label>
             <input
               type="text"
               placeholder="Acerca de mí"
-              class="popup__input popup__input-description"
+              class="form__input"
               id="description"
               name="user-description"
               required
               minlength="2"
               maxlength="200"
             />
-            <span id="description-error" class="input-span"></span>
+            <span id="description-error" class="form__error input-span"></span>
           </div>
         </fieldset>
-        <button type="submit" class="popup__save-button">Guardar</button>
+
+        <button type="submit" class="form__submit-button popup__save-button">
+          Guardar
+        </button>
       </form>
     </div>
+
     <div class="popup-image">
       <form action="#" class="popup-image__container form" novalidate>
         <img
-          class="popup-image__close-button"
+          class="form__close-button popup-image__close-button"
           src="./images/close-button.svg"
           alt="Icono de cerrar ventana"
         />
-        <h3 class="popup-image__title">Nueva ubicación</h3>
-        <fieldset class="popup-image__fields">
-          <div class="popup__span-container">
-            <label for="card-title" class="popup-image__label">Título</label>
+        <h3 class="form__title popup-image__title">Nueva ubicación</h3>
+
+        <fieldset class="form__fields">
+          <div class="form__field">
+            <label for="card-title" class="form__label">Título</label>
             <input
               type="text"
-              placeholder="Titulo"
-              class="popup-image__input popup-image__input-title"
+              placeholder="Título"
+              class="form__input"
               id="card-title"
               name="card-title"
               required
               minlength="2"
               maxlength="30"
-            /><span id="card-title-error" class="input-span"></span>
+            />
+            <span id="card-title-error" class="form__error input-span"></span>
           </div>
-          <div class="popup__span-container">
-            <label for="image-url" class="popup-image__label"
-              >URL de la imagen</label
-            >
+          <div class="form__field">
+            <label for="image-url" class="form__label">URL de la imagen</label>
             <input
               type="url"
               placeholder="Enlace a la imagen"
-              class="popup-image__input popup-image__input-url"
+              class="form__input"
               id="image-url"
               name="image-url"
               required
             />
-            <span id="image-url-error" class="input-span"></span>
+            <span id="image-url-error" class="form__error input-span"></span>
           </div>
         </fieldset>
-        <button type="submit" class="popup-image__submit-button">Crear</button>
+
+        <button
+          type="submit"
+          class="form__submit-button popup-image__submit-button"
+        >
+          Crear
+        </button>
       </form>
     </div>
-    <div class="cell-popup">
-      <div class="cell-popup__container">
-        <img class="cell-popup__image" />
+
+    <div class="popup-cell">
+      <div class="popup-cell__container">
+        <img class="popup-cell__image" />
         <img
-          class="cell-popup__close-button"
+          class="form__close-button popup-cell__close-button"
           src="./images/close-button.svg"
           alt=""
         />
-        <p class="cell-popup__title"></p>
+        <p class="popup-cell__title"></p>
       </div>
     </div>
+
     <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/validate.js"></script>
   </body>
 </html>
