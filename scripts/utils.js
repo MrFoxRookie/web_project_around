@@ -1,3 +1,5 @@
+//Manejan el comportamiento de los popups, abrir y cerrar//
+
 export function handlePopupBehavior(button, form) {
   function _handleOpenPopup() {
     form.style.display = "flex";
@@ -8,7 +10,6 @@ export function handlePopupBehavior(button, form) {
       const profileDescription = document.querySelector(
         ".profile__description"
       );
-
       nameInput.value = profileName.textContent;
       descriptionInput.value = profileDescription.textContent;
     } else if (form.classList.contains("popup-image")) {
@@ -36,7 +37,7 @@ export function handlePopupBehavior(button, form) {
   }
 
   function _handleClosePopup(evt) {
-    evt?.preventDefault();
+    evt.preventDefault();
     form.style.display = "none";
     _resetFormErrors();
   }
@@ -55,7 +56,7 @@ export function handlePopupBehavior(button, form) {
 
   button.addEventListener("click", _handleOpenPopup);
   const closeButton = form.querySelector(".form__close-button");
-  if (closeButton) closeButton.addEventListener("click", _handleClosePopup);
+  closeButton.addEventListener("click", _handleClosePopup);
   document.addEventListener("keydown", _handleEscapeKey);
   form.addEventListener("mousedown", _handleClickOutside);
 

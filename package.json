@@ -1,0 +1,19 @@
+{
+  "name": "web_project_around",
+  "version": "1.0.0",
+  "description": "\"TripleTen JS Project\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrFoxRookie/web_project_around.git"
+  },
+  "author": "Zahid Tejeda Amaro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MrFoxRookie/web_project_around/issues"
+  },
+  "homepage": "https://github.com/MrFoxRookie/web_project_around#readme"
+}
