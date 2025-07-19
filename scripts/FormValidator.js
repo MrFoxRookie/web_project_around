@@ -42,15 +42,13 @@ export class FormValidator {
   }
 
   //Cada vez que se escriba en un input, esta funcion se ejecuta//
-  //Controla el comportamiento del boton de submit, si hay al menos un input que no es valido, el boton se desactiva, caso contrario, se activa//
+  //Controla el comportamiento del boton de submit, si hay al menos un input que no es valido, el boton se desactiva, caso contrario, se activa, ademas de que evita que se haga un submit con valores invalidos//
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
       //Si hay al menos un input que no es valido//
       this._buttonElement.disabled = true; //Si hay al menos un input que no es valido, se desactiva el boton de submit//
-      this._buttonElement.classList.add(this._config.inactiveButtonClass); //Se agrega la clase que hace que el boton se vea desactivado//
     } else {
       this._buttonElement.disabled = false; //Si todos los inputs son validos, se activa el boton de submit//
-      this._buttonElement.classList.remove(this._config.inactiveButtonClass);
     }
   }
 
