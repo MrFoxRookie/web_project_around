@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(config, formElement) {
     this._config = config; //Se refiere al objeto de configuración que contiene las clases y selectores para la validación //
     this._formElement = formElement;
