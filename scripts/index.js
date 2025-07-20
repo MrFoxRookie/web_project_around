@@ -29,21 +29,20 @@ const grid = document.querySelector(".grid");
 //Prueba//
 import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
+//Instancias de Profile//
 
 const userInfo = new UserInfo({
   userName: profileName,
-  userDescription: profileDescription,
+  userJob: profileDescription, // <-- este nombre debe coincidir con la clase
 });
 
-const addProfilePopup = new PopupWithForm(".popup", (data) => {
-  userInfo.setUserInfo(data.name, data.description);
-  addProfilePopup.close();
+const newProfile = new PopupWithForm(".popup", (data) => {
+  newProfile.close();
+  userInfo.setUserInfo(data.name, data.description); //Recordar que el name del html debe de ser igual//
 });
-
-addProfilePopup.setEventListeners();
 
 editButton.addEventListener("click", () => {
-  addProfilePopup.open();
+  newProfile.open();
 });
 
 // Configuración validación

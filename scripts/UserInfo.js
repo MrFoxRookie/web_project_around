@@ -1,18 +1,36 @@
+// export default class UserInfo {
+//   constructor({ userName, userDescription }) {
+//     this._userName = userName;
+//     this._userDescription = userDescription;
+//   }
+
+//   getUserInfo() {
+//     return {
+//       name: this._userName.textContent,
+//       description: this._userDescription.textContent,
+//     };
+//   }
+
+//   setUserInfo(userName, userDescription) {
+//     this._userName.textContent = userName;
+//     this._userDescription.textContent = userDescription;
+//   }
+// }
 export default class UserInfo {
-  constructor({ userName, userDescription }) {
+  constructor({ userName, userJob }) {
     this._userName = userName;
-    this._userDescription = userDescription;
+    this._userJob = userJob;
   }
 
   getUserInfo() {
     return {
       name: this._userName.textContent,
-      description: this._userDescription.textContent,
+      job: this._userJob.textContent,
     };
   }
 
-  setUserInfo(userName, userDescription) {
-    this._userName.textContent = userName;
-    this._userDescription.textContent = userDescription;
+  setUserInfo(name, job) {
+    this._userName.textContent = name;
+    this._userJob.textContent = job;
   }
 }
