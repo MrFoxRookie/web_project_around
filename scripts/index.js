@@ -1,6 +1,9 @@
 import Card from "./card.js";
 import FormValidator from "./FormValidator.js";
-// import { handlePopupBehavior } from "./utils.js";
+import PopupWithForm from "./PopupWithForm.js";
+import UserInfo from "./UserInfo.js";
+import Section from "./Section.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 //Pruebas de nuevos modulos//
 
@@ -27,9 +30,7 @@ const imageForm = imageFormContainer.querySelector(".popup-image__container");
 const grid = document.querySelector(".grid");
 
 //Prueba//
-import PopupWithForm from "./PopupWithForm.js";
-import UserInfo from "./UserInfo.js";
-import Section from "./Section.js";
+
 //Instancias de Popup de profile//
 //Se especifica el objeto dentro de los parametros de UserInfo al crear la instancia//
 const userInfo = new UserInfo({
@@ -48,6 +49,7 @@ editButton.addEventListener("click", () => {
 });
 
 // Instancias de Popup de imagen//
+
 // Las cartas iniciales//
 const initialCards = [
   {
@@ -60,6 +62,10 @@ const initialCards = [
   { name: "Cueva de Postojna", link: "./images/Postojna.jpg" },
   { name: "Bosque Schwarzwald", link: "./images/Schwarzwald.jpg" },
 ];
+
+initialCards.forEach((item) => {
+  const imagePopup = new PopupWithImage(".popup-cell");
+});
 
 function createCard(name, link) {
   // Se crea la instancia de la carta
