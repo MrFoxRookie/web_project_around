@@ -1,10 +1,9 @@
 import Popup from "./Popup.js";
 export default class PopupWithImage extends Popup {
-  //Lo que debe de obtener es el contenedor del popup
   constructor(popupSelector) {
     super(popupSelector);
-    this._popupTitle = this._form.querySelector(".popup-cell__title");
-    this._popupImage = this._form.querySelector(".popup-cell__image");
+    this._popupTitle = this._popupSelector.querySelector(".popup-cell__title");
+    this._popupImage = this._popupSelector.querySelector(".popup-cell__image");
   }
 
   open(name, link) {

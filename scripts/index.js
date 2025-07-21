@@ -63,15 +63,13 @@ const initialCards = [
   { name: "Bosque Schwarzwald", link: "./images/Schwarzwald.jpg" },
 ];
 
-initialCards.forEach((item) => {
-  const imagePopup = new PopupWithImage(".popup-cell");
-});
+const imagePopup = new PopupWithImage(".popup-cell");
+imagePopup.setEventListeners();
 
 function createCard(name, link) {
-  // Se crea la instancia de la carta
-  const card = new Card(name, link);
-  console.log(card.generateCard());
-  // Se obtiene el html de las cartas//
+  const card = new Card(name, link, (name, link) => {
+    imagePopup.open(name, link);
+  });
   return card.generateCard();
 }
 
@@ -115,20 +113,3 @@ profileFormValidator.enableValidation();
 
 const imageFormValidator = new FormValidator(validationConfig, imageForm);
 imageFormValidator.enableValidation();
-
-// Handlers de popup
-// const profilePopupHandler = handlePopupBehavior(
-//   editButton,
-//   profileFormContainer
-// );
-// const imagePopupHandler = handlePopupBehavior(addButton, imageFormContainer);
-
-// Submit imagen
-// imageForm.addEventListener("submit", (evt) => {
-//   evt.preventDefault();
-//   imagePopupHandler.close(evt);
-//   createCard({ name: cardName.value, link: cardLink.value });
-// });
-
-// // Se aplica la funcion a cada carta//
-// initialCards.forEach(createCard);

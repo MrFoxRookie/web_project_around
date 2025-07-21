@@ -1,20 +1,25 @@
 export default class Card {
-  constructor(name, link) {
+  constructor(name, link, handleCardClick) {
     this.name = name;
     this.link = link;
+    this._handleCardClick = handleCardClick;
+
     this._element = document
       .querySelector("#template-card")
-      .cloneNode(true)
-      .content.querySelector(".grid__cell");
+      .content.querySelector(".grid__cell")
+      .cloneNode(true);
   }
 
   generateCard() {
     this.locationName = this._element.querySelector(".grid__location-name");
     this.locationUrl = this._element.querySelector(".grid__image");
+
     this.locationName.textContent = this.name;
     this.locationUrl.src = this.link;
     this.locationUrl.alt = this.name;
+
     this._setEventListeners();
+
     return this._element;
   }
 
@@ -24,6 +29,11 @@ export default class Card {
 
     likeButton.addEventListener("click", this._handleLike);
     deleteButton.addEventListener("click", this._handleDelete);
+
+    // 💥 Aquí está la conexión con el popup
+    this.locationUrl.addEventListener("click", () => {
+      this._handleCardClick(this.name, this.link);
+    });
   }
 
   _handleLike = () => {
