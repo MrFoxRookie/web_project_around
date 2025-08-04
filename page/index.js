@@ -40,6 +40,7 @@ const userInfo = new UserInfo({
 //Se crea la instancia del popup del formulario profile, y se obtienen los datos de los valores del input a traves del data, el cual se pasa al index.js//
 //Api para caragar perfil inicial//
 api.getUserProfile().then((data) => {
+  //Este data incluye name, id, avatar y about
   profileName.textContent = data.name;
   profileDescription.textContent = data.about;
 });
@@ -58,17 +59,17 @@ editButton.addEventListener("click", () => {
 // Instancias de Popup de imagen//
 
 // Las cartas iniciales//
-const initialCards = [
-  {
-    name: "Bosque Arashiyama",
-    link: "./images/Bosque-de-Bambú-de-Arashiyama.jpg",
-  },
-  { name: "Cataratas Victoria", link: "./images/Cataratas-Victoria.jpg" },
-  { name: "Cañon del Sumidero", link: "./images/Cañon-del-Sumidero.jpg" },
-  { name: "Desierto de Atacama", link: "./images/Desierto-de-Atacama.jpg" },
-  { name: "Cueva de Postojna", link: "./images/Postojna.jpg" },
-  { name: "Bosque Schwarzwald", link: "./images/Schwarzwald.jpg" },
-];
+// const initialCards = [
+//   {
+//     name: "Bosque Arashiyama",
+//     link: "./images/Bosque-de-Bambú-de-Arashiyama.jpg",
+//   },
+//   { name: "Cataratas Victoria", link: "./images/Cataratas-Victoria.jpg" },
+//   { name: "Cañon del Sumidero", link: "./images/Cañon-del-Sumidero.jpg" },
+//   { name: "Desierto de Atacama", link: "./images/Desierto-de-Atacama.jpg" },
+//   { name: "Cueva de Postojna", link: "./images/Postojna.jpg" },
+//   { name: "Bosque Schwarzwald", link: "./images/Schwarzwald.jpg" },
+// ];
 
 const imagePopup = new PopupWithImage(".popup-cell");
 imagePopup.setEventListeners();
@@ -80,22 +81,24 @@ function createCard(name, link) {
   return card.generateCard();
 }
 
-const newSection = new Section(
-  {
-    //El primer argumento es la lista del array//
-    items: initialCards,
-    // el segundo argument es la funcion que se aplicara a cada una de las cartas mediante la funcion renderer() dentro de la class Section
-    renderer: (item) => {
-      const cardElement = createCard(item.name, item.link);
-      //Se activ ala funcion dentro del section el cual hace que el cardElement sea empujado al grid//
-      newSection.addItem(cardElement);
+api.getInitialCards().then((cardsFromServer) => {
+  const newSection = new Section(
+    {
+      //El primer argumento es la lista del array//
+      items: cardsFromServer,
+      // el segundo argument es la funcion que se aplicara a cada una de las cartas mediante la funcion renderer() dentro de la class Section
+      renderer: (item) => {
+        const cardElement = createCard(item.name, item.link);
+        //Se activ ala funcion dentro del section el cual hace que el cardElement sea empujado al grid//
+        newSection.addItem(cardElement);
+      },
     },
-  },
-  // el grid al cual se emplujan las cartas ya completadas
-  grid
-);
-// Hace que se rendericen todas las tarjetas iniciales
-newSection.renderer();
+    // el grid al cual se emplujan las cartas ya completadas
+    grid
+  );
+  // Hace que se rendericen todas las tarjetas iniciales
+  newSection.renderer();
+});
 
 const newImage = new PopupWithForm(".popup-image", (data) => {
   const cardElement = createCard(data.name, data.link);

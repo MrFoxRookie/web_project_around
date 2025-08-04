@@ -20,7 +20,7 @@ class Api {
         return data;
       })
       .catch((err) => {
-        console.error("Error en getUserProfile():", err);
+        console.error("Error en getUserProfile()", err);
       });
   }
 
@@ -44,12 +44,28 @@ class Api {
         return data;
       })
       .catch((err) => {
-        console.error("Error en changeUserInfo():", err);
+        console.error("Error en changeUserInfo()", err);
       });
   }
 
   getInitialCards() {
-    // ...
+    return fetch("https://around-api.es.tripleten-services.com/v1/cards/", {
+      method: "GET",
+      headers: this.headers,
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Error de respuesta de getInitialCards()");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Cartas iniciales obtenidas correctamente", data);
+        return data;
+      })
+      .catch((err) => {
+        console.log("Error en getInitialCards()", err);
+      });
   }
 
   // otros métodos para trabajar con la API
