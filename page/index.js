@@ -40,7 +40,7 @@ const userInfo = new UserInfo({
 //Se crea la instancia del popup del formulario profile, y se obtienen los datos de los valores del input a traves del data, el cual se pasa al index.js//
 //Api para caragar perfil inicial//
 api.getUserProfile().then((data) => {
-  //Este data incluye name, id, avatar y about
+  //Este data incluye name, _id, avatar y about
   profileName.textContent = data.name;
   profileDescription.textContent = data.about;
 });
@@ -81,14 +81,18 @@ function createCard(name, link) {
   return card.generateCard();
 }
 
+let newSection;
+
 api.getInitialCards().then((cardsFromServer) => {
-  const newSection = new Section(
+  newSection = new Section(
     {
       //El primer argumento es la lista del array//
       items: cardsFromServer,
       // el segundo argument es la funcion que se aplicara a cada una de las cartas mediante la funcion renderer() dentro de la class Section
       renderer: (item) => {
         const cardElement = createCard(item.name, item.link);
+        //Aqui se encuentran los isLiked, owner, y el _id del elemento//
+        // console.log(item);
         //Se activ ala funcion dentro del section el cual hace que el cardElement sea empujado al grid//
         newSection.addItem(cardElement);
       },
@@ -103,6 +107,7 @@ api.getInitialCards().then((cardsFromServer) => {
 const newImage = new PopupWithForm(".popup-image", (data) => {
   const cardElement = createCard(data.name, data.link);
   newSection.addItem(cardElement);
+  api.addCardToServer(data.name, data.link);
   newImage.close();
 });
 

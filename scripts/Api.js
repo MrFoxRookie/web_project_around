@@ -68,7 +68,21 @@ class Api {
       });
   }
 
-  // otros métodos para trabajar con la API
+  addCardToServer(name, link) {
+    return fetch("https://around-api.es.tripleten-services.com/v1/cards/", {
+      method: "POST",
+      headers: this.headers,
+      body: JSON.stringify({
+        name: name,
+        link: link,
+      }),
+    }).then((res) => {
+      if (!res.ok) {
+        throw new Error("Error de respuesta de addCardToServer()");
+      }
+      return res.json();
+    });
+  }
 }
 
 export const api = new Api({
