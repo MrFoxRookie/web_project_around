@@ -38,6 +38,12 @@ const userInfo = new UserInfo({
   userJob: profileDescription,
 });
 //Se crea la instancia del popup del formulario profile, y se obtienen los datos de los valores del input a traves del data, el cual se pasa al index.js//
+//Api para caragar perfil inicial//
+api.getUserProfile().then((data) => {
+  profileName.textContent = data.name;
+  profileDescription.textContent = data.about;
+});
+
 const newProfile = new PopupWithForm(".popup", (data) => {
   newProfile.close();
   //Se pasa a la funcion setUserInfo de la instancia userInfo los valores de los inputs, que en ese caso son la data antes mencionada, ademas de que los inputs deben de tener el mismo name que se ponen dentro del constructor, en este caso name y description//

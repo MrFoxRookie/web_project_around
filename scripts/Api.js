@@ -4,17 +4,25 @@ class Api {
     this.headers = headers;
   }
 
-  // getUserProfile() {
-  //   return fetch(`${this.baseUrl}/users/me`, {
-  //     method: "GET",
-  //     headers: this.headers,
-  //   }).then((res) => {
-  //     if (!res.ok) {
-  //       console.log("Error de respuesta de getUserProfile()");
-  //     }
-  //     console.log("Respuesta de getUserprofile() obtenida");
-  //   });
-  // }
+  getUserProfile() {
+    return fetch(`${this.baseUrl}/users/me`, {
+      method: "GET",
+      headers: this.headers,
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Error de respuesta de getUserProfile()");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Perfil del usuario obtenido correctamente", data);
+        return data;
+      })
+      .catch((err) => {
+        console.error("Error en getUserProfile():", err);
+      });
+  }
 
   changeUserInfo({ name, about }) {
     return fetch(`${this.baseUrl}/users/me`, {
