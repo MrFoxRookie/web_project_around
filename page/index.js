@@ -4,8 +4,9 @@ import PopupWithForm from "../scripts/PopupWithForm.js";
 import UserInfo from "../scripts/UserInfo.js";
 import Section from "../scripts/Section.js";
 import PopupWithImage from "../scripts/PopupWithImage.js";
+import { api } from "../scripts/Api.js";
 
-//Pruebas de nuevos modulos//
+// const authorizationToken = "2ab4707e-7e3e-46da-b541-9c275a49c25c";
 
 // Elementos DOM / globales//
 const editButton = document.querySelector(".profile__edit-button");
@@ -31,6 +32,7 @@ const grid = document.querySelector(".grid");
 
 //Instancias de Popup de profile//
 //Se especifica el objeto dentro de los parametros de UserInfo al crear la instancia//
+
 const userInfo = new UserInfo({
   userName: profileName,
   userJob: profileDescription,
@@ -39,7 +41,8 @@ const userInfo = new UserInfo({
 const newProfile = new PopupWithForm(".popup", (data) => {
   newProfile.close();
   //Se pasa a la funcion setUserInfo de la instancia userInfo los valores de los inputs, que en ese caso son la data antes mencionada, ademas de que los inputs deben de tener el mismo name que se ponen dentro del constructor, en este caso name y description//
-  userInfo.setUserInfo(data.name, data.description); //Recordar que el name del html debe de ser igual//
+  userInfo.setUserInfo(data.name, data.description);
+  api.changeUserInfo({ name: data.name, about: data.description }); //Recordar que el name del html debe de ser igual//
 });
 
 editButton.addEventListener("click", () => {
