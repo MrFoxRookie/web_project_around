@@ -1,11 +1,17 @@
 export default class Card {
-  constructor(item, handleCardClick, handleLikeToggle) {
+  constructor(
+    item,
+    handleCardClick,
+    handleLikeToggle,
+    handleDeleteConfirmation
+  ) {
     this.name = item.name;
     this.link = item.link;
     this._id = item._id;
     this.isLiked = item.isLiked;
     this._handleCardClick = handleCardClick;
     this._handleLikeToggle = handleLikeToggle;
+    this._handleDeleteConfirmation = handleDeleteConfirmation;
     this._element = document
       .querySelector("#template-card")
       .content.querySelector(".grid__cell")
@@ -63,6 +69,8 @@ export default class Card {
   };
 
   _handleDelete = () => {
-    this._element.remove();
+    this._handleDeleteConfirmation();
+
+    // this._element.remove();
   };
 }

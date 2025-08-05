@@ -17,8 +17,6 @@ const popupImageContainer = document.querySelector(".popup-cell");
 const popupConfirmationContainer = document.querySelector(
   ".popup-confirmation"
 );
-console.log(popupConfirmationContainer);
-console.log(PopupWithConfirmation);
 
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
@@ -49,13 +47,6 @@ api.getUserProfile().then((data) => {
   profileDescription.textContent = data.about;
 });
 
-const newConfirmation = new PopupWithConfirmation(".popup-confirmation");
-
-profileName.addEventListener("click", () => {
-  newConfirmation.open();
-  newConfirmation.setEventListeners();
-});
-
 const newProfile = new PopupWithForm(".popup", (data) => {
   newProfile.close();
   //Se pasa a la funcion setUserInfo de la instancia userInfo los valores de los inputs, que en ese caso son la data antes mencionada, ademas de que los inputs deben de tener el mismo name que se ponen dentro del constructor, en este caso name y description//
@@ -69,6 +60,9 @@ editButton.addEventListener("click", () => {
 
 // Instancias de Popup de imagen//
 
+const confirmationPopup = new PopupWithConfirmation(".popup-confirmation");
+confirmationPopup.setEventListeners();
+
 const imagePopup = new PopupWithImage(".popup-cell");
 imagePopup.setEventListeners();
 
@@ -81,7 +75,8 @@ function createCard(item) {
     (_id, isLiked) =>
       api.toggleCardLike(_id, isLiked).then(() => {
         card.isLikedToggle();
-      })
+      }),
+    () => confirmationPopup.open()
   );
 
   return card.generateCard();
@@ -97,8 +92,6 @@ api.getInitialCards().then((cardsFromServer) => {
       // el segundo argument es la funcion que se aplicara a cada una de las cartas mediante la funcion renderer() dentro de la class Section
       renderer: (item) => {
         const cardElement = createCard(item);
-
-        console.log(item, "hola");
 
         //Aqui se encuentran los isLiked, owner, y el _id del elemento//
         // console.log(item);
