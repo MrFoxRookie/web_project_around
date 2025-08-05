@@ -42,7 +42,7 @@ export default class Card {
     likeButton.addEventListener("click", this._handleLike);
     deleteButton.addEventListener("click", this._handleDelete);
 
-    //Aquí está la conexión con el popup
+    //Aquí está la conexión con el popup, no olvidar
     this.locationUrl.addEventListener("click", () => {
       this._handleCardClick(this.name, this.link);
     });
@@ -70,7 +70,7 @@ export default class Card {
 
   _handleDelete = () => {
     this._handleDeleteConfirmation(this._id, () => {
-      this._element.remove(); // <-- esta es la función que se ejecutará si el servidor responde correctamente
+      this._element.remove();
     });
   };
 }

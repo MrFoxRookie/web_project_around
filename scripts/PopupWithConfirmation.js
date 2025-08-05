@@ -9,7 +9,7 @@ export default class PopupWithConfirmation extends Popup {
 
   open(cardId, removeCardCallback) {
     this._cardId = cardId;
-    this._removeCardCallback = removeCardCallback; // <-- nuevo: guardar la función que borra del DOM
+    this._removeCardCallback = removeCardCallback;
     super.open();
   }
 
@@ -22,7 +22,7 @@ export default class PopupWithConfirmation extends Popup {
       this._handleDeleteCardFromServer(this._cardId)
         .then(() => {
           if (this._removeCardCallback) {
-            this._removeCardCallback(); // borrar del DOM
+            this._removeCardCallback();
           }
           this.close();
         })

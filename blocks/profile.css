@@ -7,18 +7,41 @@
   padding: 40px 0 50px;
 }
 
-/* Cambiado de .profile__main-container */
 .profile__main {
   display: flex;
 }
 
-/* Cambiado de .profile__photo */
+.profile__image-container {
+  position: relative;
+  border-radius: 50%;
+}
+
 .profile__image {
   border-radius: 50%;
   max-width: 120px;
 }
 
-/* Cambiado de .profile__username-container */
+.profile__image-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 26px;
+  height: 26px;
+  transform: translate(-50%, -50%);
+  display: none;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.profile__image:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.profile__image-container:hover .profile__image-button {
+  display: flex;
+}
+
 .profile__info {
   margin: 0 18px 0 30px;
   display: flex;
@@ -27,7 +50,6 @@
   position: relative;
 }
 
-/* Igual */
 .profile__name {
   font-size: 42px;
   font-weight: 500;
@@ -35,14 +57,12 @@
   margin: 0 0 16px 0;
 }
 
-/* Cambiado de .profile__about-me */
 .profile__description {
   font-weight: 400;
   font-size: 18px;
   margin: 0;
 }
 
-/* Igual */
 .profile__edit-button {
   width: 24px;
   position: absolute;
@@ -55,7 +75,6 @@
   cursor: pointer;
 }
 
-/* Cambiado de .profile__add-container */
 .profile__add-button {
   width: 150px;
   height: 50px;
@@ -71,7 +90,6 @@
   cursor: pointer;
 }
 
-/* Cambiado de .profile__add-cross */
 .profile__add-icon {
   width: 22px;
   height: 22px;
