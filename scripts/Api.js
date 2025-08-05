@@ -16,7 +16,7 @@ class Api {
         return res.json();
       })
       .then((data) => {
-        console.log("Perfil del usuario obtenido correctamente", data);
+        // console.log("Perfil del usuario obtenido correctamente", data);
         return data;
       })
       .catch((err) => {
@@ -60,7 +60,7 @@ class Api {
         return res.json();
       })
       .then((data) => {
-        console.log("Cartas iniciales obtenidas correctamente", data);
+        // console.log("Cartas iniciales obtenidas correctamente", data);
         return data;
       })
       .catch((err) => {
@@ -83,12 +83,26 @@ class Api {
       return res.json();
     });
   }
+
+  toggleCardLike(_id, isLiked) {
+    return fetch(
+      `https://around-api.es.tripleten-services.com/v1/cards/${_id}/likes`,
+      {
+        method: isLiked ? "DELETE" : "PUT",
+        headers: this.headers,
+      }
+    ).then((res) => {
+      if (!res.ok) {
+        console.log("Respuesta de toggleCards");
+      }
+    });
+  }
 }
 
 export const api = new Api({
   baseUrl: "https://around-api.es.tripleten-services.com/v1",
   headers: {
-    authorization: "2ab4707e-7e3e-46da-b541-9c275a49c25c",
+    authorization: "318a2160-9165-4111-ad8b-f6ac77574be8",
     "Content-Type": "application/json",
   },
 });

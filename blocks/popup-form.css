@@ -1,5 +1,6 @@
 .popup,
-.popup-image {
+.popup-image,
+.popup-confirmation {
   position: fixed;
   top: 0;
   left: 0;
