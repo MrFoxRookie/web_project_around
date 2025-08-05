@@ -69,8 +69,8 @@ export default class Card {
   };
 
   _handleDelete = () => {
-    this._handleDeleteConfirmation();
-
-    // this._element.remove();
+    this._handleDeleteConfirmation(this._id, () => {
+      this._element.remove(); // <-- esta es la función que se ejecutará si el servidor responde correctamente
+    });
   };
 }

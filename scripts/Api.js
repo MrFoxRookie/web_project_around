@@ -97,6 +97,21 @@ class Api {
       }
     });
   }
+
+  deleteCardFromServer(_id) {
+    return fetch(
+      `https://around-api.es.tripleten-services.com/v1/cards/${_id}`,
+      {
+        method: "DELETE",
+        headers: this.headers,
+      }
+    ).then((res) => {
+      if (!res.ok) {
+        throw new Error("Error al borrar carta del servidor");
+      }
+      return res.json();
+    });
+  }
 }
 
 export const api = new Api({

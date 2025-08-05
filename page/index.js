@@ -60,25 +60,25 @@ editButton.addEventListener("click", () => {
 
 // Instancias de Popup de imagen//
 
-const confirmationPopup = new PopupWithConfirmation(".popup-confirmation");
-confirmationPopup.setEventListeners();
-
-const imagePopup = new PopupWithImage(".popup-cell");
+const imagePopup = new PopupWithImage(".popup-cell", (_id) =>
+  api.deleteCardFromServer(_id)
+);
 imagePopup.setEventListeners();
+
+const confirmationPopup = new PopupWithConfirmation(
+  ".popup-confirmation",
+  (cardId) => api.deleteCardFromServer(cardId)
+);
+confirmationPopup.setEventListeners();
 
 function createCard(item) {
   const card = new Card(
     item,
-    (name, link) => {
-      imagePopup.open(name, link);
-    },
+    (name, link) => imagePopup.open(name, link),
     (_id, isLiked) =>
-      api.toggleCardLike(_id, isLiked).then(() => {
-        card.isLikedToggle();
-      }),
-    () => confirmationPopup.open()
+      api.toggleCardLike(_id, isLiked).then(() => card.isLikedToggle()),
+    (_id, removeCardCallback) => confirmationPopup.open(_id, removeCardCallback)
   );
-
   return card.generateCard();
 }
 
