@@ -41,8 +41,15 @@ const cardLink = imageFormContainer.querySelector("#image-url");
 const grid = document.querySelector(".grid");
 
 const newAvatar = new PopupWithForm(".popup-avatar", (data) => {
-  avatarButton.src = data.avatar;
-  newAvatar.close();
+  newAvatar.loadingInformation(true);
+  api
+    .changeUserAvatar(data.avatar)
+    .then(() => {
+      avatarButton.src = data.avatar;
+      newAvatar.close();
+    })
+    .catch((err) => console.error(err))
+    .finally(() => newAvatar.loadingInformation(false));
 });
 
 avatarButton.addEventListener("click", () => {
@@ -50,12 +57,22 @@ avatarButton.addEventListener("click", () => {
   newAvatar.open();
 });
 
+api
+  .getAvatarFromServer()
+  .then((avatarUrl) => {
+    userInfo.setUserAvatar(avatarUrl);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
 //Instancias de Popup de profile//
 //Se especifica el objeto dentro de los parametros de UserInfo al crear la instancia//
 
 const userInfo = new UserInfo({
   userName: profileName,
   userJob: profileDescription,
+  userAvatar: ".profile__image",
 });
 //Se crea la instancia del popup del formulario profile, y se obtienen los datos de los valores del input a traves del data, el cual se pasa al index.js//
 //Api para caragar perfil inicial//
@@ -66,10 +83,17 @@ api.getUserProfile().then((data) => {
 });
 
 const newProfile = new PopupWithForm(".popup-profile", (data) => {
-  newProfile.close();
+  newProfile.loadingInformation(true);
+
   //Se pasa a la funcion setUserInfo de la instancia userInfo los valores de los inputs, que en ese caso son la data antes mencionada, ademas de que los inputs deben de tener el mismo name que se ponen dentro del constructor, en este caso name y description//
-  userInfo.setUserInfo(data.name, data.description);
-  api.changeUserInfo({ name: data.name, about: data.description }); //Recordar que el name del html debe de ser igual//
+  api
+    .changeUserInfo({ name: data.name, about: data.description })
+    .then(() => {
+      userInfo.setUserInfo(data.name, data.description);
+      newProfile.close();
+    })
+    .catch((err) => console.error(err))
+    .finally(() => newProfile.loadingInformation(false));
 });
 
 editButton.addEventListener("click", () => {
@@ -126,6 +150,8 @@ api.getInitialCards().then((cardsFromServer) => {
 });
 
 const newImage = new PopupWithForm(".popup-image", (data) => {
+  newImage.loadingInformation(true);
+
   api
     .addCardToServer(data.name, data.link)
     .then((cardDataFromServer) => {
@@ -134,7 +160,9 @@ const newImage = new PopupWithForm(".popup-image", (data) => {
       newImage.close();
     })
     .catch((err) => {
-      console.error("Error al agregar tarjeta:", err);
+      console
+        .error("Error al agregar tarjeta:", err)
+        .finally(() => newImage.loadingInformation(false));
     });
 });
 

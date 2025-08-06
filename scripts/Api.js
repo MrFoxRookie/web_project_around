@@ -112,6 +112,42 @@ class Api {
       return res.json();
     });
   }
+
+  getAvatarFromServer() {
+    return fetch("https://around-api.es.tripleten-services.com/v1/users/me", {
+      method: "GET",
+      headers: this.headers,
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Error al obtener imagen del avatar del usuario");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        return data.avatar;
+      });
+  }
+
+  changeUserAvatar(avatarLink) {
+    return fetch(
+      "https://around-api.es.tripleten-services.com/v1/users/me/avatar",
+      {
+        method: "PATCH",
+        headers: this.headers,
+        body: JSON.stringify({
+          avatar: avatarLink,
+        }),
+      }
+    ).then((res) => {
+      if (!res.ok) {
+        throw new Error(
+          "Error al cambiar imagen del avatar del usuario en el servidor"
+        );
+      }
+      return res.json();
+    });
+  }
 }
 
 export const api = new Api({
