@@ -28,8 +28,8 @@ export default class Card {
 
     const likeButton = this._element.querySelector(".grid__like-button");
     likeButton.src = this.isLiked
-      ? "./images/like-button_active.svg"
-      : "./images/like-button.svg";
+      ? "../images/like-button_active.svg"
+      : "../images/like-button.svg";
     this._setEventListeners();
 
     return this._element;
@@ -56,12 +56,12 @@ export default class Card {
     const likeButton = this._element.querySelector(".grid__like-button");
 
     if (likeButton.src.includes("like-button.svg")) {
-      likeButton.src = "./images/like-button_active.svg";
+      likeButton.src = "../images/like-button_active.svg";
       this.isLiked = false;
       console.log("like activado");
       this._handleLikeToggle(this._id, this.isLiked);
     } else {
-      likeButton.src = "./images/like-button.svg";
+      likeButton.src = "../images/like-button.svg";
       console.log("like desactivado");
 
       this._handleLikeToggle(this._id, this.isLiked);
