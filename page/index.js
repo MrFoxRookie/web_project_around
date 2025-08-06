@@ -7,17 +7,28 @@ import PopupWithImage from "../scripts/PopupWithImage.js";
 import { api } from "../scripts/Api.js";
 import PopupWithConfirmation from "../scripts/PopupWithConfirmation.js";
 
-// Elementos DOM / globales//
+//Botones//
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
-
-const profileFormContainer = document.querySelector(".popup");
+const avatarButton = document.querySelector(".profile__image");
+//Contenedores de formulario//
+const profileFormContainer = document.querySelector(".popup-profile");
 const imageFormContainer = document.querySelector(".popup-image");
 const popupImageContainer = document.querySelector(".popup-cell");
 const popupConfirmationContainer = document.querySelector(
   ".popup-confirmation"
 );
+const popupAvatarContainer = document.querySelector(".popup-avatar");
+//Formularios//
+const profileForm = profileFormContainer.querySelector(
+  ".popup-profile__container"
+);
+const imageForm = imageFormContainer.querySelector(".popup-image__container");
+const avatarForm = popupAvatarContainer.querySelector(
+  ".popup-avatar__container"
+);
 
+//
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 
@@ -27,10 +38,17 @@ const descriptionInput = profileFormContainer.querySelector("#description");
 const cardName = imageFormContainer.querySelector("#card-title");
 const cardLink = imageFormContainer.querySelector("#image-url");
 
-const profileForm = profileFormContainer.querySelector(".popup__container");
-const imageForm = imageFormContainer.querySelector(".popup-image__container");
-
 const grid = document.querySelector(".grid");
+
+const newAvatar = new PopupWithForm(".popup-avatar", (data) => {
+  avatarButton.src = data.avatar;
+  newAvatar.close();
+});
+
+avatarButton.addEventListener("click", () => {
+  newAvatar.open();
+  console.log("Popup abierto");
+});
 
 //Instancias de Popup de profile//
 //Se especifica el objeto dentro de los parametros de UserInfo al crear la instancia//
@@ -47,7 +65,7 @@ api.getUserProfile().then((data) => {
   profileDescription.textContent = data.about;
 });
 
-const newProfile = new PopupWithForm(".popup", (data) => {
+const newProfile = new PopupWithForm(".popup-profile", (data) => {
   newProfile.close();
   //Se pasa a la funcion setUserInfo de la instancia userInfo los valores de los inputs, que en ese caso son la data antes mencionada, ademas de que los inputs deben de tener el mismo name que se ponen dentro del constructor, en este caso name y description//
   userInfo.setUserInfo(data.name, data.description);
@@ -136,3 +154,6 @@ profileFormValidator.enableValidation();
 
 const imageFormValidator = new FormValidator(validationConfig, imageForm);
 imageFormValidator.enableValidation();
+
+const avatarFormValidator = new FormValidator(validationConfig, avatarForm);
+avatarFormValidator.enableValidation();
