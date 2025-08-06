@@ -46,8 +46,8 @@ const newAvatar = new PopupWithForm(".popup-avatar", (data) => {
 });
 
 avatarButton.addEventListener("click", () => {
+  avatarFormValidator.resetValidation();
   newAvatar.open();
-  console.log("Popup abierto");
 });
 
 //Instancias de Popup de profile//
@@ -73,6 +73,7 @@ const newProfile = new PopupWithForm(".popup-profile", (data) => {
 });
 
 editButton.addEventListener("click", () => {
+  profileFormValidator.resetValidation();
   newProfile.open();
 });
 
@@ -138,6 +139,7 @@ const newImage = new PopupWithForm(".popup-image", (data) => {
 });
 
 addButton.addEventListener("click", () => {
+  imageFormValidator.resetValidation();
   newImage.open();
 });
 

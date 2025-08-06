@@ -41,6 +41,22 @@ export default class FormValidator {
     }
   }
 
+  _hideInputError(inputElement) {
+    const errorElement = this._formElement.querySelector(
+      `#${inputElement.id}-error`
+    );
+    inputElement.classList.remove(this._config.inputErrorClass);
+    errorElement.textContent = "";
+  }
+
+  resetValidation() {
+    this._toggleButtonState();
+
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
+
   //Cada vez que se escriba en un input, esta funcion se ejecuta//
   //Controla el comportamiento del boton de submit, si hay al menos un input que no es valido, el boton se desactiva, caso contrario, se activa, ademas de que evita que se haga un submit con valores invalidos//
   _toggleButtonState() {
